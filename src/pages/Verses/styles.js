@@ -24,19 +24,6 @@ export const IconContainer = styled.TouchableHighlight`
     top: ${Constants.statusBarHeight + 20}px;
     left: 0px;
 `;
-export const ShareContainer = styled.TouchableHighlight`
-    width: 85px;
-    height: 50px;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #360C70;
-
-    position: absolute;
-    top: ${Constants.statusBarHeight + 20}px;
-    right: 0px;
-`;
 
 export const Title = styled.Text`
     font-size: 40px;    
