@@ -24,7 +24,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.lincolnsilva.biblia-icep",
+      "package": "com.lincolnsilva.biblia_icep",
       "versionCode": 1
     }
   }
