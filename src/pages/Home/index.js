@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import logoImg from '../../assets/asa.png';
 import api from '../../services/bible.json';
@@ -12,8 +13,9 @@ import {
     Img,
     Title,
     SubTitle,
+    Form,
     Input,
-    ListBooks,
+    List,
     ButtomContainer,
     ButtomText,
     Verse
@@ -26,6 +28,9 @@ export default function Home() {
     const [bible, setBible] = useState(api);
     const [search, setSearch] = useState('');
 
+    /**
+     * function that updates the list
+     */
     useEffect(() => {
         function handleSearch() {
             if (search != '') {
@@ -49,7 +54,7 @@ export default function Home() {
 
     function renderBooks() {
         return (
-            <ListBooks>
+            <List>
                 {
                     bible.map((book, index) => (
                         <ButtomContainer
@@ -60,7 +65,7 @@ export default function Home() {
                         </ButtomContainer>
                     ))
                 }
-            </ListBooks>
+            </List>
         );
     }
 
@@ -72,12 +77,17 @@ export default function Home() {
         book = book.reverse().join(' ');
 
         const indexBook = api.findIndex(item => item.name.includes(book));
-        const msg = api[indexBook].chapters[chapter - 1][verse - 1];
+        let msg = api[indexBook].chapters[chapter - 1][verse - 1];
+        msg = msg === undefined ? "Aguardando versículo" : msg;
 
         return (
-            <ScrollView>
-                <Verse>{msg}</Verse>
-            </ScrollView>
+            <Verse>
+                <MaterialCommunityIcons name="format-quote-open" size={32} color="#320c70" />
+                {
+                    msg
+                }
+                <MaterialCommunityIcons name="format-quote-close" size={32} color="#360c70" />
+            </Verse>
         );
     }
 
@@ -92,14 +102,26 @@ export default function Home() {
             <Title>Bíblia Sagrada</Title>
             <SubTitle>Buscar por nome do livro*</SubTitle>
 
-            <Input
+            <Form
                 style={{ elevation: 0.5 }}
-                placeholder="Pesquisar"
-                placeholderTextColor="#C5C5C5"
-                autoCapitalize="words"
-                value={search}
-                onChangeText={setSearch}
-            />
+            >
+                <Input
+                    placeholder="Pesquisar"
+                    placeholderTextColor="#C5C5C5"
+                    autoCapitalize="words"
+                    value={search}
+                    onChangeText={setSearch}
+                />
+
+                {
+                    search != 0 &&
+                    <TouchableHighlight
+                        onPress={() => setSearch('')}
+                    >
+                        <AntDesign name="close" size={22} color="#C5C5C5" />
+                    </TouchableHighlight>
+                }
+            </Form>
 
             {
                 search.includes(':')

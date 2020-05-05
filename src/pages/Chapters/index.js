@@ -21,7 +21,7 @@ export default function Chapters() {
     navigation.navigate("Home");
   }
 
-  function handleNaviateVeser(index) {
+  function handleNavigateVerses(index) {
 
     const data = {
       name,
@@ -33,6 +33,7 @@ export default function Chapters() {
 
   return (
     <Container>
+
       <IconContainer
         onPress={handleGoBack}
       >
@@ -42,21 +43,19 @@ export default function Chapters() {
       <Title>{name}</Title>
 
       <FlatList
+        numColumns="5"
+        showsVerticalScrollIndicator={false}
+
         data={chapters}
         keyExtractor={id => String(id)}
         renderItem={({ item, index }) => (
           <BoxContainer
-            onPress={() => handleNaviateVeser(index)}
-            style={{
-              elevation: 1
-            }}
+            onPress={() => handleNavigateVerses(index)}
+            activeOpacity={0.85}
           >
             <BoxText>{index + 1}</BoxText>
           </BoxContainer>
         )}
-
-        numColumns="5"
-        showsVerticalScrollIndicator={false}
 
       />
 

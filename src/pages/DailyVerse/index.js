@@ -19,7 +19,9 @@ export default function DailyVerse() {
     function handleNavigateToHome() {
         navigation.navigate("Home");
     }
-
+    /**
+     * Handle verses to share
+     */
     async function handleShareVerse(verse, reference) {
         const msg = `*Bíblia ICEP*\n\n${verse}\n\n${reference} `;
 
@@ -35,6 +37,9 @@ export default function DailyVerse() {
 
     }
 
+    /**
+     * function that generates verses
+     */
     function renderDailyVerse() {
 
         function getRandomIntInclusive(min, max) {

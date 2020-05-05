@@ -43,7 +43,7 @@ export const ButtonContainer = styled.TouchableOpacity.attrs({
     background: #360C70;
 
     position: absolute;
-    bottom: 24px;
+    bottom: 16px;
     left: 30px;
 
     border-radius: 8px;

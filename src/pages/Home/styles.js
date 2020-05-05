@@ -40,21 +40,30 @@ export const SubTitle = styled.Text`
     margin: 32px 0px 8px;
 `;
 
-export const Input = styled.TextInput`
+export const Form = styled.View`
     height: 50px;
     width: 100%;
 
-    font-size: 16px;
     background: #fff;
-    color: #171717;
 
-    padding: 10px;
+    padding: 8px 10px;
     margin: 0px 0px 32px;
 
     border-radius: 8px;
+
+    flex-direction: row;
+    align-items: center;
 `;
-export const ListBooks = styled.ScrollView.attrs({
-    showsVerticalScrollIndicator : false,
+
+
+export const Input = styled.TextInput`
+    flex:1;
+
+    font-size: 16px;
+    color: #171717;
+`;
+export const List = styled.ScrollView.attrs({
+    showsVerticalScrollIndicator: false,
 })`
     flex:1;
     width: 100%;
@@ -76,5 +85,6 @@ export const ButtomText = styled.Text`
 export const Verse = styled.Text`
     font-size: 20px;
     margin-bottom: 8px;
-    text-align: justify;
+    text-align: center;
+    color: #171717;
 `;
