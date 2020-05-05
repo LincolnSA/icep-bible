@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 
 export const Container = styled.View`
     flex:1;
-    padding: ${Constants.statusBarHeight + 20}px 16px 0px;
+    padding: ${Constants.statusBarHeight + 8}px 16px 0px;
     background: #FAFBFB;
 
     align-items: center;
@@ -22,16 +22,22 @@ export const IconContainer = styled.TouchableHighlight`
     background: #360C70;
 
     position: absolute;
-    top: ${Constants.statusBarHeight + 20}px;
+    top: ${Constants.statusBarHeight + 8}px;
     left: 0px;
+
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+
 `;
 
 export const Title = styled.Text`
     font-size: 40px;    
     font-weight: 700;
     color: #360c70;
-    margin-top: 100px;
-    margin-bottom: 10px;
+
+    margin-top: 56px;
+    margin-bottom: 32px;
 
     text-align: center;
 `;

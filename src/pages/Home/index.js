@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import logoImg from '../../assets/asa.png';
@@ -14,7 +15,8 @@ import {
     Input,
     ListBooks,
     ButtomContainer,
-    ButtomText
+    ButtomText,
+    Verse
 
 } from './styles';
 
@@ -26,25 +28,57 @@ export default function Home() {
 
     useEffect(() => {
         function handleSearch() {
-            if (search == 0) {
-                setBible(api);
+            if (search != '') {
+                const filter = bible.filter(book => book.name.includes(search));
+                setBible(filter);
                 return;
             }
-
-            const filter = bible.filter(book => book.name.includes(search));
-            setBible(filter);
+            setBible(api);
         };
 
         handleSearch();
     }, [search]);
 
-
-    function handleNaviateChapter(abbrev) {
+    function handleNavigateToChapter(abbrev) {
         const selectedBook = (bible.filter(book => book.abbrev.includes(abbrev)))[0];
 
         setBible(api);
         setSearch('');
         navigation.navigate("Chapters", { selectedBook });
+    }
+
+    function renderBooks() {
+        return (
+            <ListBooks>
+                {
+                    bible.map((book, index) => (
+                        <ButtomContainer
+                            key={index}
+                            onPress={() => handleNavigateToChapter(book.abbrev)}
+                        >
+                            <ButtomText>{book.name}</ButtomText>
+                        </ButtomContainer>
+                    ))
+                }
+            </ListBooks>
+        );
+    }
+
+    function renderVerse() {
+        let [rest, verse] = search.split(":");
+        verse = verse == '' ? 0 : verse;
+
+        let [chapter, ...book] = rest.split(' ').reverse();
+        book = book.reverse().join(' ');
+
+        const indexBook = api.findIndex(item => item.name.includes(book));
+        const msg = api[indexBook].chapters[chapter - 1][verse - 1];
+
+        return (
+            <ScrollView>
+                <Verse>{msg}</Verse>
+            </ScrollView>
+        );
     }
 
     return (
@@ -62,23 +96,17 @@ export default function Home() {
                 style={{ elevation: 0.5 }}
                 placeholder="Pesquisar"
                 placeholderTextColor="#C5C5C5"
-
+                autoCapitalize="words"
                 value={search}
                 onChangeText={setSearch}
             />
 
-            <ListBooks>
-                {
-                    bible.map((book, index) => (
-                        <ButtomContainer
-                            key={index}
-                            onPress={() => handleNaviateChapter(book.abbrev)}
-                        >
-                            <ButtomText>{book.name}</ButtomText>
-                        </ButtomContainer>
-                    ))
-                }
-            </ListBooks>
+            {
+                search.includes(':')
+                    ? renderVerse()
+                    : renderBooks()
+            }
+
 
         </Container>
     );

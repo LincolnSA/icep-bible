@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 
 export const Container = styled.View`
     flex:1;
-    padding: ${Constants.statusBarHeight + 20}px 30px 10px;
+    padding: ${Constants.statusBarHeight + 8}px 30px 10px;
     background: #FAFBFB;
 `;
 
@@ -13,7 +13,7 @@ export const Header = styled.View`
     justify-content:space-between;
     width: 100%;
 
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 `;
 
 export const Text = styled.Text`
@@ -35,9 +35,9 @@ export const Title = styled.Text`
 `;
 
 export const SubTitle = styled.Text`
-    font-size: 12px;
+    font-size: 14px;
     color: #C5C5C5;
-    margin: 20px 0px 5px;
+    margin: 32px 0px 8px;
 `;
 
 export const Input = styled.TextInput`
@@ -49,9 +49,9 @@ export const Input = styled.TextInput`
     color: #171717;
 
     padding: 10px;
-    margin: 0px 0px 10px;
+    margin: 0px 0px 32px;
 
-    border-radius: 4px;
+    border-radius: 8px;
 `;
 export const ListBooks = styled.ScrollView.attrs({
     showsVerticalScrollIndicator : false,
@@ -71,4 +71,10 @@ export const ButtomContainer = styled.TouchableOpacity`
 export const ButtomText = styled.Text`
     font-size: 18px;
     color: #171717;
+`;
+
+export const Verse = styled.Text`
+    font-size: 20px;
+    margin-bottom: 8px;
+    text-align: justify;
 `;
